@@ -16,6 +16,6 @@ books/
 
 ```
 cd prog1
-../bin/mkpdf
+../buildtools/bin/mkpdf
 ```
 
