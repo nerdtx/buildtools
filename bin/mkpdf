@@ -1,0 +1,19 @@
+#!/bin/bash
+
+mkdir -p build
+
+SRCDIR=$1
+
+SCRIPTDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+pandoc \
+    --pdf-engine=xelatex \
+    --template=$SCRIPTDIR/../templates/eisvogel.latex \
+    --highlight-style tango \
+    --toc \
+    --toc-depth=2 \
+    --lua-filter $SCRIPTDIR/../templates/pagebreak.lua \
+    --filter $SCRIPTDIR/pandoc-crossref \
+    -o build/output.pdf \
+    $SRCDIR/title.txt $SRCDIR/*.md
+
